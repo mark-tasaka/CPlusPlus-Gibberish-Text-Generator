@@ -13,6 +13,11 @@ The Gibberish Text Generator is designed with the following rules.
 
 ----------------
 
+Update 1.01: 2022-12-25
+
+Updated files to add more functionality.
+
+
 Initial commit: 2022-12-24
 
 The intial commit for the Giberish Text Generator.
