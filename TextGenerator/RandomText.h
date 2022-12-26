@@ -9,13 +9,21 @@ class RandomText {
 		RandomText();
 		RandomText(int paragraphs);
 		~RandomText();
-		int getNumberOfParagaphs() const;
-		string getWord();
+		//void setNumberOfParagraphs(int paragraphs);
+		//int getNumberOfParagaphs();
+		string getWord(int wordSize, bool isFirstWord);
 		string getSentence();
+		string createParagraph();
+		void setWordLength(int wordLength);
+		int getWordLength();
+		string generateText(int paragraphs);
 
 	private:
-		int paragraphs;
+		//int paragraphs;
 		string sentence;
+		string theParagraph;
+		int wordLength;
+		bool isFirstWord;
 };
 
 #endif // !RANDOM_TEXT_H

@@ -1,9 +1,12 @@
 #include<iostream>
+#include<cstdlib>
 #include<string>
 #include<time.h>
+#include<ctime>
 #include<vector>
 #include"RandomText.h"
 using namespace std;
+
 
 RandomText::RandomText()
 {
@@ -11,7 +14,7 @@ RandomText::RandomText()
 
 RandomText::RandomText(int paragraphs)
 {
-	this->paragraphs = paragraphs;
+	
 }
 
 //D'tor
@@ -20,46 +23,114 @@ RandomText::~RandomText()
 
 }
 
-int RandomText::getNumberOfParagaphs() const
+//void setNumberOfParagraphs(int paragraphs)
+//{
+//	this->paragraphs = paragraphs;
+//}
+//
+//int RandomText::getNumberOfParagaphs()
+//{
+//	return paragraphs;
+//}
+
+
+void RandomText::setWordLength(int wordLength)
 {
-	return paragraphs;
+	this->wordLength = wordLength;
+}
+
+int RandomText::getWordLength()
+{
+	return wordLength;
 }
 
 
-string RandomText::getWord()
+string RandomText::getWord(int wordSize, bool isFirstWord)
 {
-	srand((unsigned int)time(NULL));
 
-	const int wordLength = rand() % 9 + 3;
+	vector<char> alphabet {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-	vector<char> alphabet {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'w', 'x', 'y', 'z'};
+	vector<char> alphabetUpperCase { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
-	vector<char> word;
-
-	int letter;
-
-	for (int i = 0; i < wordLength; i++)
+	string word;
+	
+	for (int i = 0; i < wordSize; i++)
 	{
-		srand((unsigned int)time(NULL));
-		letter = rand() % 26;
-		word.push_back(alphabet[letter]);
+		if (isFirstWord == true && i == 0)
+		{
+			int letter = rand() % 26;
+			word.push_back(alphabetUpperCase[letter]);
+		}
+		else
+		{
+			int letter = rand() % 26;
+			word.push_back(alphabet[letter]);
+		}
 	}
 
-	string theWord(word.begin(), word.end());
-
-	return theWord;
+	return word;
 }
 
 string RandomText::getSentence()
 {
-	string sentence = "";
 
-	for (int i = 0; i < 10; i++)
+	this->sentence = "";
+	this->isFirstWord = false;
+	int numberOfWordsPerSentence = rand() % 10 + 5;
+
+	for (int i = 0; i < numberOfWordsPerSentence; i++)
 	{
-		string word = RandomText::getWord();
+		if (i == 0)
+		{
+			isFirstWord = true;
+		}
+		else
+		{
+			isFirstWord = false;
+		}
+		int wordSize = rand() % 8 + 4;
+		string word = RandomText::getWord(wordSize, isFirstWord);
 		sentence += word;
+		if (i == numberOfWordsPerSentence - 1)
+		{
+			sentence += ". ";
+		}
 		sentence += " ";
 	}
 
 	return sentence;
+}
+
+string RandomText::createParagraph()
+{
+	int sentencesPerParagraph = rand() % 5 + 4;
+	string paragraph = "";
+
+	for (int i = 0; i < sentencesPerParagraph; i++)
+	{
+		this->sentence = RandomText::getSentence();
+		paragraph += sentence;
+	}
+
+	return paragraph;
+}
+
+string RandomText::generateText(int paragraphs)
+{
+	string text = "";
+
+	for (int i = 0; i <= paragraphs; i++)
+	{
+		if (i < paragraphs)
+		{
+			text += RandomText::createParagraph();
+			text += "\n\n";
+		}
+		else
+		{
+			text += RandomText::createParagraph();
+		}
+	}
+
+	return text;
 }
