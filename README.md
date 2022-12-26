@@ -25,6 +25,12 @@ The Gibberish Text Generator is designed with the following rules.
 
 ----------------
 
+
+Update 1.02: 2022-12-26
+
+More rules for the Gibberish Text generator added to the Readme file.  As well, additional functionality added to existing files.
+
+
 Update 1.01: 2022-12-25
 
 Updated files to add more functionality.
