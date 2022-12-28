@@ -53,6 +53,7 @@ string RandomText::getWord(int wordSize, bool isFirstWord)
 	vector<char> alphabetUpperCase { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
 	string word;
+	//vector<string> word2;
 	
 	for (int i = 0; i < wordSize; i++)
 	{
@@ -71,12 +72,13 @@ string RandomText::getWord(int wordSize, bool isFirstWord)
 	return word;
 }
 
-string RandomText::getSentence()
+vector<string> RandomText::getSentence()
 {
 
 	this->sentence = "";
 	this->isFirstWord = false;
 	int numberOfWordsPerSentence = rand() % 10 + 5;
+	vector<string> theSentence;
 
 	for (int i = 0; i < numberOfWordsPerSentence; i++)
 	{
@@ -90,47 +92,60 @@ string RandomText::getSentence()
 		}
 		int wordSize = rand() % 8 + 4;
 		string word = RandomText::getWord(wordSize, isFirstWord);
-		sentence += word;
+		//sentence += word;
 		if (i == numberOfWordsPerSentence - 1)
 		{
-			sentence += ". ";
+			//sentence += ". ";
+			word += ". ";
 		}
-		sentence += " ";
+		//sentence += " ";
+		word += " ";
+
+		theSentence.push_back(word);
 	}
 
-	return sentence;
+	//return sentence;
+	return theSentence;
 }
 
-string RandomText::createParagraph()
+vector<string> RandomText::createParagraph()
 {
 	int sentencesPerParagraph = rand() % 5 + 4;
-	string paragraph = "";
+	vector<string> theSentence;
+	vector<string> paragraph;
 
 	for (int i = 0; i < sentencesPerParagraph; i++)
 	{
-		this->sentence = RandomText::getSentence();
-		paragraph += sentence;
+		theSentence = RandomText::getSentence();
+		paragraph.push_back(sentence);
 	}
 
 	return paragraph;
 }
 
-string RandomText::generateText(int paragraphs)
+void RandomText::generateText(int paragraphs)
 {
-	string text = "";
-
+	
 	for (int i = 0; i <= paragraphs; i++)
 	{
+
+		vector<string> aParagraph;
+
+		aParagraph = RandomText::createParagraph();
+
+		for (string para : aParagraph)
+		{
+			cout << para << endl;
+		}
+
 		if (i < paragraphs)
 		{
-			text += RandomText::createParagraph();
-			text += "\n\n";
+			cout << endl << endl;
 		}
 		else
 		{
-			text += RandomText::createParagraph();
+			cout << endl;
 		}
 	}
 
-	return text;
 }

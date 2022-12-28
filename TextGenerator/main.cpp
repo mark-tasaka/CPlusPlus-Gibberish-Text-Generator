@@ -11,7 +11,7 @@ int main()
 {
 	srand(time(nullptr));
 	RandomText test1;
-	
-	cout << test1.generateText(10) << endl;
+	test1.generateText(10);
+
 	return 0;
 }

@@ -2,6 +2,7 @@
 #define RANDOM_TEXT_H
 #include<iostream>
 #include<string>
+#include<vector>
 using namespace std;
 
 class RandomText {
@@ -12,11 +13,11 @@ class RandomText {
 		//void setNumberOfParagraphs(int paragraphs);
 		//int getNumberOfParagaphs();
 		string getWord(int wordSize, bool isFirstWord);
-		string getSentence();
-		string createParagraph();
+		vector<string> getSentence();
+		vector<string> createParagraph();
 		void setWordLength(int wordLength);
 		int getWordLength();
-		string generateText(int paragraphs);
+		void generateText(int paragraphs);
 
 	private:
 		//int paragraphs;
@@ -24,6 +25,7 @@ class RandomText {
 		string theParagraph;
 		int wordLength;
 		bool isFirstWord;
+		//vector<string> text;
 };
 
 #endif // !RANDOM_TEXT_H
