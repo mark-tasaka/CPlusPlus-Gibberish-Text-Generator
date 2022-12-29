@@ -12,27 +12,12 @@ RandomText::RandomText()
 {
 }
 
-RandomText::RandomText(int paragraphs)
-{
-	
-}
 
 //D'tor
 RandomText::~RandomText()
 {
 
 }
-
-//void setNumberOfParagraphs(int paragraphs)
-//{
-//	this->paragraphs = paragraphs;
-//}
-//
-//int RandomText::getNumberOfParagaphs()
-//{
-//	return paragraphs;
-//}
-
 
 void RandomText::setWordLength(int wordLength)
 {
@@ -72,6 +57,29 @@ string RandomText::getWord(int wordSize, bool isFirstWord)
 	return word;
 }
 
+
+int RandomText::addCommaPos(int sentence)
+{
+	int position = 0;
+	int rangeSize = sentence;
+
+	if (sentence <= 6)
+	{
+		position = 3;
+	}
+	else if (sentence > 6 && sentence < 9)
+	{
+		position = rand() % 2 + 3;
+	}
+	else
+	{
+		position = rand() % 4 + 3;
+	}
+
+	return position;
+}
+
+
 vector<string> RandomText::getSentence()
 {
 
@@ -79,6 +87,7 @@ vector<string> RandomText::getSentence()
 	this->isFirstWord = false;
 	int numberOfWordsPerSentence = rand() % 10 + 5;
 	vector<string> theSentence;
+	int commaPostition = RandomText::addCommaPos(numberOfWordsPerSentence);
 
 	for (int i = 0; i < numberOfWordsPerSentence; i++)
 	{
@@ -92,12 +101,17 @@ vector<string> RandomText::getSentence()
 		}
 		int wordSize = rand() % 8 + 4;
 		string word = RandomText::getWord(wordSize, isFirstWord);
-		//sentence += word;
 		if (i == numberOfWordsPerSentence - 1)
 		{
-			//sentence += ". ";
 			word += ". ";
 		}
+
+		if (i == commaPostition)
+		{
+			word += ',';
+		}
+
+
 		//sentence += " ";
 		word += " ";
 
@@ -108,19 +122,23 @@ vector<string> RandomText::getSentence()
 	return theSentence;
 }
 
-vector<string> RandomText::createParagraph()
+void RandomText::createParagraph()
 {
 	int sentencesPerParagraph = rand() % 5 + 4;
 	vector<string> theSentence;
-	vector<string> paragraph;
+	//vector<string> paragraph;
 
 	for (int i = 0; i < sentencesPerParagraph; i++)
 	{
 		theSentence = RandomText::getSentence();
-		paragraph.push_back(sentence);
+		for (string eachSentence : theSentence)
+		{
+			cout << eachSentence;
+		}
+		//paragraph.push_back(sentence);
 	}
 
-	return paragraph;
+	//return paragraph;
 }
 
 void RandomText::generateText(int paragraphs)
@@ -128,24 +146,27 @@ void RandomText::generateText(int paragraphs)
 	
 	for (int i = 0; i <= paragraphs; i++)
 	{
+		
+		RandomText::createParagraph();
+		cout << endl << endl;
 
-		vector<string> aParagraph;
+		//vector<string> aParagraph;
 
-		aParagraph = RandomText::createParagraph();
+		//aParagraph = RandomText::createParagraph();
 
-		for (string para : aParagraph)
-		{
-			cout << para << endl;
-		}
+		//for (string para : aParagraph)
+		//{
+		//	cout << para << endl;
+		//}
 
-		if (i < paragraphs)
-		{
-			cout << endl << endl;
-		}
-		else
-		{
-			cout << endl;
-		}
+		//if (i < paragraphs)
+		//{
+		//	cout << endl << endl;
+		//}
+		//else
+		//{
+		//	cout << endl;
+		//}
 	}
 
 }
