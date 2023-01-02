@@ -8,8 +8,10 @@
 using namespace std;
 
 
-RandomText::RandomText()
+RandomText::RandomText(int numberParagraphs)
 {
+	this->numberParagraphs = numberParagraphs;
+	RandomText::generateText(numberParagraphs);
 }
 
 
@@ -144,7 +146,7 @@ void RandomText::createParagraph()
 void RandomText::generateText(int paragraphs)
 {
 	
-	for (int i = 0; i <= paragraphs; i++)
+	for (int i = 0; i < paragraphs; i++)
 	{
 		
 		RandomText::createParagraph();

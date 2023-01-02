@@ -7,7 +7,7 @@ using namespace std;
 
 class RandomText {
 	public:
-		RandomText();
+		RandomText(int numberParagraphs);
 		~RandomText();
 		string getWord(int wordSize, bool isFirstWord);
 		vector<string> getSentence();
@@ -22,6 +22,7 @@ class RandomText {
 		string theParagraph;
 		int wordLength;
 		bool isFirstWord;
+		int numberParagraphs;
 };
 
 #endif // !RANDOM_TEXT_H
