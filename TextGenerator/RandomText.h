@@ -10,19 +10,20 @@ class RandomText {
 		RandomText(int numberParagraphs);
 		~RandomText();
 		string getWord(int wordSize, bool isFirstWord);
-		vector<string> getSentence();
+		string getSentence();
 		int addCommaPos(int sentence);
-		void createParagraph();
+		string createParagraph();
 		void setWordLength(int wordLength);
 		int getWordLength();
-		void generateText(int paragraphs);
+		string generateText(int paragraphs);
 
 	private:
-		string sentence;
-		string theParagraph;
+		//string sentence;
+		//string theParagraph;
 		int wordLength;
 		bool isFirstWord;
 		int numberParagraphs;
+		string text;
 };
 
 #endif // !RANDOM_TEXT_H

@@ -27,6 +27,7 @@ void generateText()
 	int printToTextFile = 0;
 	ofstream file;
 	int counter = 1;
+	string text;
 
 	cout << "Welcome to the Random Text Generator." << endl;
 	cout << "How many paragraphs of Random Text would you like to generate?  Please enter an integer value." << endl;
@@ -34,6 +35,9 @@ void generateText()
 	cout << endl << endl;
 
 	RandomText test1 = RandomText(paragraphs);
+	//text = test1.generateText(paragraphs);
+
+	cout << test1.generateText(paragraphs) << endl;
 
 	cout << endl;
 

@@ -11,7 +11,7 @@ using namespace std;
 RandomText::RandomText(int numberParagraphs)
 {
 	this->numberParagraphs = numberParagraphs;
-	RandomText::generateText(numberParagraphs);
+	//string this->text = RandomText::generateText(numberParagraphs);
 }
 
 
@@ -82,10 +82,10 @@ int RandomText::addCommaPos(int sentence)
 }
 
 
-vector<string> RandomText::getSentence()
+string RandomText::getSentence()
 {
 
-	this->sentence = "";
+	string sentence = "";
 	this->isFirstWord = false;
 	int numberOfWordsPerSentence = rand() % 10 + 5;
 	vector<string> theSentence;
@@ -117,58 +117,41 @@ vector<string> RandomText::getSentence()
 		//sentence += " ";
 		word += " ";
 
-		theSentence.push_back(word);
+		sentence += word;
 	}
 
-	//return sentence;
-	return theSentence;
+	return sentence;
+	
 }
 
-void RandomText::createParagraph()
+string RandomText::createParagraph()
 {
 	int sentencesPerParagraph = rand() % 5 + 4;
-	vector<string> theSentence;
+	string theSentence;
+	string theParagraph;
 	//vector<string> paragraph;
 
 	for (int i = 0; i < sentencesPerParagraph; i++)
 	{
 		theSentence = RandomText::getSentence();
-		for (string eachSentence : theSentence)
-		{
-			cout << eachSentence;
-		}
-		//paragraph.push_back(sentence);
+		theParagraph += theSentence;
 	}
 
-	//return paragraph;
+	return theParagraph;
 }
 
-void RandomText::generateText(int paragraphs)
+string RandomText::generateText(int paragraphs)
 {
-	
+	string theText;
+
 	for (int i = 0; i < paragraphs; i++)
 	{
 		
-		RandomText::createParagraph();
+		theText += RandomText::createParagraph();
 		cout << endl << endl;
 
-		//vector<string> aParagraph;
-
-		//aParagraph = RandomText::createParagraph();
-
-		//for (string para : aParagraph)
-		//{
-		//	cout << para << endl;
-		//}
-
-		//if (i < paragraphs)
-		//{
-		//	cout << endl << endl;
-		//}
-		//else
-		//{
-		//	cout << endl;
-		//}
 	}
+
+	return theText;
 
 }
