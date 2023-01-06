@@ -15,7 +15,7 @@ class RandomText {
 		string createParagraph();
 		void setWordLength(int wordLength);
 		int getWordLength();
-		string generateText(int paragraphs);
+		vector<string> generateText(int paragraphs);
 
 	private:
 		//string sentence;
@@ -23,7 +23,7 @@ class RandomText {
 		int wordLength;
 		bool isFirstWord;
 		int numberParagraphs;
-		string text;
+		vector<string> text;
 };
 
 #endif // !RANDOM_TEXT_H

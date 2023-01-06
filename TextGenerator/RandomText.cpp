@@ -140,15 +140,16 @@ string RandomText::createParagraph()
 	return theParagraph;
 }
 
-string RandomText::generateText(int paragraphs)
+vector<string> RandomText::generateText(int paragraphs)
 {
-	string theText;
+	string text;
+	vector<string> theText;
 
 	for (int i = 0; i < paragraphs; i++)
 	{
 		
-		theText += RandomText::createParagraph();
-		cout << endl << endl;
+		text += RandomText::createParagraph();
+		theText.push_back(text);
 
 	}
 
